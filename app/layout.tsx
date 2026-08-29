@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl="/">
     <html
       lang="en"
       className={`${font.className} h-full antialiased`}
