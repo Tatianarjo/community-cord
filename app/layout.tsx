@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const font = Open_Sans({
   variable: "--font-geist-sans",
@@ -18,10 +19,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <ClerkProvider afterSignOutUrl="/">
     <html
-      lang="en"
+      lang="en" suppressHydrationWarning
       className={`${font.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+        storageKey="discord-theme"
+        >
+        {children}
+        </ThemeProvider>
+        </body>
     </html>
     </ClerkProvider>
   );
